@@ -11,6 +11,7 @@ namespace MonoGameWindowsStarter
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D ball;
 
         public Game1()
         {
@@ -23,10 +24,15 @@ namespace MonoGameWindowsStarter
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
+        /// 
+        /// Graphics card is not initialized for the game so nothing graphical should be loaded
         /// </summary>
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferWidth = 1042;
+            graphics.PreferredBackBufferHeight = 760;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -34,11 +40,14 @@ namespace MonoGameWindowsStarter
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
+        /// 
+        /// Graphics card is ready for content in the video RAM
         /// </summary>
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            ball = Content.Load<Texture2D>("tennis");
 
             // TODO: use this.Content to load your game content here
         }
@@ -76,6 +85,9 @@ namespace MonoGameWindowsStarter
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(ball, new Rectangle(100, 100, 100, 100), Color.CornflowerBlue);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
