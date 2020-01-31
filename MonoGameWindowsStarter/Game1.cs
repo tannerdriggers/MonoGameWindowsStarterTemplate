@@ -39,7 +39,6 @@ namespace MonoGameWindowsStarter
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             graphics.PreferredBackBufferWidth = 1042;
             graphics.PreferredBackBufferHeight = 760;
             graphics.ApplyChanges();
@@ -71,7 +70,6 @@ namespace MonoGameWindowsStarter
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             ball = Content.Load<Texture2D>("tennis-ball");
             paddle = Content.Load<Texture2D>("pixel");
         }
@@ -121,7 +119,6 @@ namespace MonoGameWindowsStarter
                 paddleSpeed = 0;
             }
 
-            // TODO: Add your update logic here
             ballPosition += (float) gameTime.ElapsedGameTime.TotalMilliseconds * ballVelocity;
 
             if (ballPosition.Y < 0)
@@ -164,7 +161,6 @@ namespace MonoGameWindowsStarter
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(ball, new Rectangle((int) ballPosition.X, (int) ballPosition.Y, 100, 100), Color.White);
             spriteBatch.Draw(paddle, paddleRect, Color.Red);
